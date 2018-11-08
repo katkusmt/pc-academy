@@ -4,5 +4,5 @@
 }
 
 .no-vertical-scrollbar {
-  overflow-y: hidden;
+  overflow-y: auto
 }
