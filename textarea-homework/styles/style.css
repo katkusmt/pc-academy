@@ -1,4 +1,8 @@
 #main-textarea {
   resize: none;
-  overflow: hidden;
+  overflow-x: hidden;
+}
+
+.no-vertical-scrollbar {
+  overflow-y: hidden;
 }

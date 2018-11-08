@@ -11,19 +11,38 @@ class MinMax {
     this.rowsMaxChars = this.mainTextarea.rows * this.mainTextarea.cols
   }
 
+  hasExceededMaxRows () {
+    return this.rowsMaxChars < this.mainTextarea.value.length ||
+    this.mainTextarea.value.substr(0, this.mainTextarea.selectionStart).split(`\n`).length > this.minRows
+  }
+
   addInputListenerToTextarea () {
     let that = this
-    if (this.mainTextarea != null) {
-      this.mainTextarea.addEventListener(`input`, function () {
-        if (that.rowsMaxChars < this.value.length) {
+    this.mainTextarea.addEventListener(`input`, function () {
+      if (that.hasExceededMaxRows()) {
+        if (this.rows < that.maxRows) {
           this.rows += 1
           that.rowsMaxChars = this.rows * this.cols
         }
-      })
-    }
+      }
+    })
+  }
+
+  addBackspaceLisenerToTextArea () {
+    let that = this
+    this.mainTextarea.addEventListener(`keydown`, function (e) {
+      let keyCode = e.keyCode
+      if (keyCode === 8 || keyCode === 46) {
+        if (this.rows > that.minRows) {
+          this.rows -= 1
+          that.rowsMaxChars = this.rows * this.cols
+        }
+      }
+    })
   }
 }
 
 let item = new MinMax(3, 6)
 item.setMinAndMaxRows()
 item.addInputListenerToTextarea()
+item.addBackspaceLisenerToTextArea()
