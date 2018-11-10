@@ -1,35 +1,51 @@
-class ResizingTextArea {
+class ResizingTextarea {
   constructor (min, max) {
     this.minRows = min
     this.maxRows = max
     this.mainTextarea = document.getElementById(`main-textarea`)
-    this.rowsMaxChars = this.minRows * this.mainTextarea.cols + this.minRows
+    this.currentRowsMaxChars = this.minRows * this.mainTextarea.cols + this.minRows
+    this.currentCharsInTextarea = 0
     this.mainTextarea.rows = this.minRows
   }
 
   changeScrollbarVisibility () {
-    if (this.rowsMaxChars >= this.mainTextarea.selectionStart) {
+    if (this.currentRowsMaxChars >= this.currentCharsInTextarea) {
       this.mainTextarea.style.overflow = `hidden`
+    } else {
+      this.mainTextarea.style.overflow = `visible`
     }
   }
 
-  hasExceededMaxRows () {
-    return this.rowsMaxChars < this.mainTextarea.selectionStart || this.hasMoreLinebreaksThanMinRows()
-  }
-
-  hasMoreLinebreaksThanMinRows () {
-    return this.mainTextarea.value.substr(0, this.mainTextarea.selectionStart).split(`\n`).length > this.minRows
+  getLinebreaks () {
+    let textAreaArray = this.mainTextarea.value.substr(0, this.selectionStart).split(`\n`)
+    let test = []
+    this.currentCharsInTextarea = 0
+    for (let i = 0; i < textAreaArray.length; i++) {
+      let totalRows = textAreaArray[i].length / (this.mainTextarea.cols + i + 1)
+      test[i] = Math.floor(totalRows) * (this.mainTextarea.cols + i + 1)
+    }
+    let that = this
+    test.forEach(function (item, i) {
+      if (item === 0) {
+        that.currentCharsInTextarea += that.mainTextarea.cols + 1
+      } else {
+        that.currentCharsInTextarea += item
+      }
+    })
+    console.log(this.currentCharsInTextarea)
   }
 
   addInputListenerToTextarea () {
     let that = this
     this.mainTextarea.addEventListener(`input`, function () {
-      if (that.hasExceededMaxRows()) {
+      that.getLinebreaks()
+      if (that.currentRowsMaxChars < that.currentCharsInTextarea) {
         if (this.rows < that.maxRows) {
           this.rows += 1
-          that.rowsMaxChars = this.rows * this.cols + this.rows
+          that.currentRowsMaxChars = this.rows * this.cols + this.rows
           that.handlePastedText()
         }
+        that.changeScrollbarVisibility()
       }
     })
   }
@@ -42,8 +58,8 @@ class ResizingTextArea {
         if (this.rows > that.minRows) {
           that.changeScrollbarVisibility()
           this.rows -= 1
-          that.rowsMaxChars = this.rows * this.cols + this.rows
-          if (this.value.length <= that.rowsMaxChars && !that.hasMoreLinebreaksThanMinRows()) {
+          that.currentRowsMaxChars = this.rows * this.cols + this.rows
+          if (that.currentCharsInTextarea <= that.minRows * this.cols) {
             this.rows = that.minRows
           }
         }
@@ -52,7 +68,7 @@ class ResizingTextArea {
   }
 
   handlePastedText () {
-    if (this.mainTextarea.selectionStart > this.rowsMaxChars) {
+    if (this.mainTextarea.selectionStart > this.currentRowsMaxChars) {
       let needRows = this.mainTextarea.selectionStart / this.mainTextarea.cols
       if (needRows > this.maxRows) {
         this.mainTextarea.rows = this.maxRows
@@ -63,6 +79,6 @@ class ResizingTextArea {
   }
 }
 
-let item = new ResizingTextArea(3, 6)
+let item = new ResizingTextarea(3, 6)
 item.addInputListenerToTextarea()
 item.addBackspaceLisenerToTextArea()
