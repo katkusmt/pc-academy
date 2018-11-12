@@ -26,13 +26,12 @@ class ResizingTextarea {
     }
     let that = this
     test.forEach(function (item, i) {
-      if (item > 0) {
+      if (item === 0) {
         that.currentCharsInTextarea += that.mainTextarea.cols + 1
       } else {
         that.currentCharsInTextarea += item
       }
     })
-    console.log(this.currentCharsInTextarea)
   }
 
   addInputListenerToTextarea () {
