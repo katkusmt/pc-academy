@@ -22,14 +22,14 @@ class ResizingTextarea {
     this.currentCharsInTextarea = 0
     for (let i = 0; i < textAreaArray.length; i++) {
       let totalRows = textAreaArray[i].length / (this.mainTextarea.cols + i + 1)
-      test[i] = totalRows * (this.mainTextarea.cols + i + 1)
+      test[i] = Math.floor(totalRows) * (this.mainTextarea.cols + i + 1)
     }
     let that = this
     test.forEach(function (item, i) {
       if (item === 0) {
         that.currentCharsInTextarea += that.mainTextarea.cols + 1
       } else {
-        that.currentCharsInTextarea += item
+        that.currentCharsInTextarea += item + 1
       }
     })
   }
