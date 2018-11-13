@@ -1,7 +1,5 @@
 #main-textarea {
   resize: none;
-  margin: 5;
-  padding: 5;
-  font-size: 20px;
   overflow: hidden;
+  padding: 5px;
 }

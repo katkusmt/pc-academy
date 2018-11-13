@@ -29,10 +29,9 @@ class ResizingTextarea {
       if (item === 0) {
         that.currentCharsInTextarea += that.mainTextarea.cols + 1
       } else {
-        that.currentCharsInTextarea += item
+        that.currentCharsInTextarea += item + 1
       }
     })
-    console.log(this.currentCharsInTextarea)
   }
 
   addInputListenerToTextarea () {
