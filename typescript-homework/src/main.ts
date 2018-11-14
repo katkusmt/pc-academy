@@ -1,3 +1,0 @@
-class Treant {
-  home: string;
-}
