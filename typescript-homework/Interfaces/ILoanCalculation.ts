@@ -1,3 +1,3 @@
 export default interface ILoanCalculation {
-  loanCalculation();
+  loanCalculation(): number;
 }

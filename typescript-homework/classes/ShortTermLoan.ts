@@ -9,11 +9,11 @@ export default class ShortTermLoan extends LoanBase implements ILoanCalculation,
 
   constructor (loanSize: number, loanTerm: number) {
     super(loanSize, loanTerm);
-    this.interest = 20;
+    this.interest = 0.2;
   }
   
-  loanCalculation() {
-    throw new Error("Method not implemented.");
+  loanCalculation(): number {
+    return this.loanSize * this.loanTerm * this.interest;
   }
 
 }
