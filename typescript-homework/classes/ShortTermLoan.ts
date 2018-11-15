@@ -1,14 +1,10 @@
 import ILoanCalculation from "../Interfaces/ILoanCalculation";
 import LoanBase from "./LoanBase";
-import ILoanLimits from "../Interfaces/ILoanLimits";
 
-export default class ShortTermLoan extends LoanBase implements ILoanCalculation, ILoanLimits {
-
-  maxAmount: number = 5000;
-  maxTerm: number = 2;
+export default class ShortTermLoan extends LoanBase implements ILoanCalculation {
 
   constructor (loanSize: number, loanTerm: number) {
-    super(loanSize, loanTerm);
+    super(loanSize, loanTerm, 5000, 2);
     this.interest = 0.2;
   }
   

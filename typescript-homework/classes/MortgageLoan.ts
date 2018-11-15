@@ -1,14 +1,13 @@
 import LoanBase from "./LoanBase";
 import ILoanCalculation from "../Interfaces/ILoanCalculation";
-import ILoanLimits from "../Interfaces/ILoanLimits";
 
-export default class MortgateLoan extends LoanBase implements ILoanCalculation, ILoanLimits {
+export default class MortgateLoan extends LoanBase implements ILoanCalculation {
   
   maxAmount: number;
   maxTerm: number;
 
-  constructor (loanSize: number, loanTerm: number) {
-    super(loanSize, loanTerm);
+  constructor (loanSize: number, loanTerm: number, maxAmount: number, maxTerm: number) {
+    super(loanSize, loanTerm, maxAmount, maxTerm);
     this.interest = 0.02;
   }
   loanCalculation(): number {
