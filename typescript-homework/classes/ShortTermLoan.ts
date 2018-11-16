@@ -9,7 +9,7 @@ export default class ShortTermLoan extends LoanBase implements ILoanCalculation 
   }
   
   loanCalculation(): number {
-    return this.loanSize * this.loanTerm * this.interest;
+    return this.loanSize * this.loanTerm * this.interest + this.loanSize;
   }
 
 }

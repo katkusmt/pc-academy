@@ -11,14 +11,27 @@
 <body>
   <div class="container">
     <h4 class="center">Short term loan (with big ass interest)</h4>
-    <label for="loanSize">Loan amount</label>
-    <input placeholder="Up to 5000" id="loanSize" data-length="5" type="number" class="validate">
-    <label for="loanSize">Loan term</label>
-    <input placeholder="Up to 5 years" id="loanSize" type="number" class="validate">
-    <button class="btn waves-effect waves-light" id="short-term-submit-button" type="submit" name="action">Submit
-        <i class="material-icons right">send</i>
-    </button>
+    <div class="row">
+      <div class="col s6 push-s3">
+        <div class="row">
+          <div class="col s10">
+              <label for="loanSize">Loan amount</label>
+              <input type="range"id="loanSize" value="100" min="1" max="5000"/>
+          </div>
+          <span class="col s2" id="rangeValue">
+        </div>
+          
+          <!-- <label for="loanSize">Loan amount</label>
+          <input placeholder="Up to 5000" id="loanSize" max="5000" type="number" class="validate"> -->
+          
+          <button class="btn waves-effect waves-light" id="short-term-submit-button" type="submit" name="action">Submit
+              <i class="material-icons right">send</i>
+          </button>
+          <h6 id="short-term-return-total" class="scale-transition scale-out"></h5>
+      </div>
+    </div>
   </div>
   <script src="../build/scripts.js"></script>
+  <script src="../src/materialize.min.js"></script>
 </body>
 </html>
