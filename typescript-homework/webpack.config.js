@@ -12,9 +12,9 @@ module.exports = {
     ]
   },
   resolve: {
-    root: [
-      path.resolve(__dirname, 'node_modules', '.bin')
-    ],
+    // root: [
+    //   path.resolve(__dirname, 'node_modules', '.bin')
+    // ],
     extensions: [ '.tsx', '.ts', '.js' ]
   },
   output: {

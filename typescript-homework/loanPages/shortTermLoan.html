@@ -6,13 +6,19 @@
   <title>Page Title</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="../css/materialize.min.css" />
-  <script src="../build/scripts.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
   <div class="container">
-    Enter sum you want to loan: <input type="number" maxlength="5">
-    Term: <input type="number" maxlength="1">
-    <button id="submitFastLoan">submit</button>
+    <h4 class="center">Short term loan (with big ass interest)</h4>
+    <label for="loanSize">Loan amount</label>
+    <input placeholder="Up to 5000" id="loanSize" data-length="5" type="number" class="validate">
+    <label for="loanSize">Loan term</label>
+    <input placeholder="Up to 5 years" id="loanSize" type="number" class="validate">
+    <button class="btn waves-effect waves-light" id="short-term-submit-button" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+    </button>
   </div>
+  <script src="../build/scripts.js"></script>
 </body>
 </html>
