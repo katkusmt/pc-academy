@@ -15,10 +15,21 @@
       <div class="col s6 push-s3">
         <div class="row">
           <div class="col s10">
-              <label for="loanSize">Loan amount</label>
-              <input type="range"id="loanSize" value="100" min="1" max="5000"/>
+              <label class="center" for="loanSize">Loan amount</label>
+              <input type="range" id="loanSize" value="100" min="1" max="5000"/>
           </div>
-          <span class="col s2" id="rangeValue">
+          <div class="col s2">
+            <span id="rangeValue"></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s10">
+              <label for="loanTerm">Loan term</label>
+              <input type="range" id="loanTerm" value="1" min="1" max="5"/>
+          </div>
+          <div class="col s2">
+            <span id="termValue"></span>
+          </div>
         </div>
           
           <!-- <label for="loanSize">Loan amount</label>

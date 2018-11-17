@@ -7,7 +7,12 @@ loanSize.addEventListener('input', function(){
   rangeValue.innerHTML = (<HTMLInputElement>loanSize).value.toString();
 });
 
+const termValue = document.getElementById("termValue");
+let loanTerm = document.getElementById("loanTerm");
 
+loanTerm.addEventListener('input', function(){
+  termValue.innerHTML = (<HTMLInputElement>loanTerm).value.toString();
+});
 
 
 const shortLoanSubmitButton = document.getElementById("short-term-submit-button");
